@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="app">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,17 +9,13 @@
 
         <!-- Bootstrap -->
         <link href="/css/web.css" rel="stylesheet">
-
+	<script type="text/javascript" src="js/angular/app/lib/angular.js"></script>
 	<script type="text/javascript" src="js/angular/app/app.js"></script>
-        <script type="text/javascript" src="js/angular/app/lib/angular.js"></script>
+	<script type="text/javascript" src="js/angular/app/controllers/MainController.js"></script>
 
         <![endif]-->
     </head>
-    <body ng-app="app">
+    <body>
         @yield('page_content')
     </body>
-    <script>
-//    var app = angular.module('app', []);
-
-    </script>
 </html>
