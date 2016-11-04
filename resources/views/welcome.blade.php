@@ -1,3 +1,4 @@
+@extends('layout.responsive')
 <!DOCTYPE html>
 <html>
     <head>
