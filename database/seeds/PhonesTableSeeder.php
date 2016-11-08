@@ -16,22 +16,15 @@ class PhonesTableSeeder extends Seeder
 
 	$phones = json_decode($phonesJson, true);
 
-//	$progress = $this->getProgressbar();
-//        $progress->start(count($areas));
-
 	foreach($phones as $phone){
 	    $newPhone = Phone::create([
 			'name' => $phone['name'],
-			'brand' => $phone['brand'],
+			'brand_id' => $phone['brand_id'],
 			'processor' => $phone['processor'],
 			'description' => $phone['description'],
 			'image' => $phone['image'],
 		    ]);
 	    $newPhone->save();
-//
-//	    $progress->advance();
 	}
-
-	$progress->finish();
     }
 }

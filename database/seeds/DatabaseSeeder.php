@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(PhonesTableSeeder::class);
-	 Model::reguard();
+         $this->call(BrandsTableSeeder::class);
+	 $this->call(PhonesTableSeeder::class);
     }
 }

@@ -13,11 +13,10 @@ class AddPhonesBrandsRelation extends Migration
     public function up()
     {
         Schema::table('phones', function ($table) {
-//	    $table->dropColumn('brand');
-//	    $table->integer('brand_id')->unsigned();
+	 $table->dropColumn('brand');
+	 $table->integer('brand_id')->unsigned()->index();
 
-//	    $table->unique(['brand_id']);
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+         $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
 	});
     }
 

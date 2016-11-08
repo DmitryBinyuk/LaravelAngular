@@ -6,22 +6,53 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Phone;
+use App\Models\Brand;
+use App\Http\Transformers\PhoneTransformer;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class EmployeesController extends Controller
 {
+     /** @var \App\Models\Phone */
+    private $phoneRepository;
+
+    /**
+     * @param \App\Models\Phone $phoneRepository
+     */
+    public function __construct(Phone $phoneRepository)
+    {
+        $this->phoneRepository = $phoneRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index($id = null) {
-	return 3;
+    public function index() {
 
-        if ($id == null) {
-            return Employee::orderBy('id', 'asc')->get();
-        } else {
-            return $this->show($id);
-        }
+//	$query = $this->phoneRepository
+//            ->join('brands', 'brands.id', '=', 'phoness.brand_id');
+
+//	$query = Phone::with(['brand'])
+//		    ->select('phones.*', 'brand.name')
+//		    ->get();
+
+//	return json_encode($query);
+
+//	$data = fractal()
+//            ->collection($areas, new PhoneTransformer())
+//            ->paginateWith(new IlluminatePaginatorAdapter($paginator))
+//            ->toArray();
+
+	$phones = Phone::all();
+
+	$data = fractal()
+	    ->collection($phones)
+	    ->transformWith(new PhoneTransformer())
+	    ->toArray();
+
+        return response()->json($data);
     }
 
     /**
