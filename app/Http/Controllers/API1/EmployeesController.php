@@ -1,6 +1,6 @@
 <?php
 
-namespace App\API1\Controllers;
+namespace App\Http\Controllers\API1;
 
 use Illuminate\Http\Request;
 
@@ -15,6 +15,8 @@ class EmployeesController extends Controller
      * @return Response
      */
     public function index($id = null) {
+	return 3;
+
         if ($id == null) {
             return Employee::orderBy('id', 'asc')->get();
         } else {

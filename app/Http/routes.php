@@ -11,19 +11,17 @@
 |
 */
 
-Route::get('/', ['as' => 'front.home', 'uses' => 'HomeController@index']);
+//Route::get('/', ['as' => 'front.home', 'uses' => 'HomeController@index']);
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
+Route::get('employees', 'API1\EmployeesController@index');
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+//Route::group(['prefix' => 'v1', 'namespace' => 'Api1'], function () {
+////    Route::get('/', function () {
+////	return view('index');
+////    });
+//
+//    Route::get('employees', 'EmployeesController@index');
+////    Route::post('employees', 'Employees@store');
+////    Route::post('employees/{id}', 'Employees@update');
+////    Route::delete('/employees/{id}', 'Employees@destroy');
+//});
