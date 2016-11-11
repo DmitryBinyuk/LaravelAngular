@@ -11,17 +11,25 @@
 |
 */
 
-//Route::get('/', ['as' => 'front.home', 'uses' => 'HomeController@index']);
+Route::get('/', ['as' => 'front.home', 'uses' => 'StoreController@index']);
 
-Route::get('employees', 'API1\EmployeesController@index');
 
-//Route::group(['prefix' => 'v1', 'namespace' => 'Api1'], function () {
-////    Route::get('/', function () {
-////	return view('index');
-////    });
-//
-//    Route::get('employees', 'EmployeesController@index');
-////    Route::post('employees', 'Employees@store');
-////    Route::post('employees/{id}', 'Employees@update');
-////    Route::delete('/employees/{id}', 'Employees@destroy');
-//});
+
+Route::get('phones/list', 'API1\PhonesController@index');
+
+Route::get('/phones', function () {
+    return view('phones.list');
+});
+
+/*****************************************************************************/
+/*   API routes
+/*****************************************************************************/
+
+Route::group(['prefix' => 'api/v1'], function () {
+
+    Route::get('phones/list', 'API1\PhonesController@index');
+
+});
+
+//Routes for learning
+Route::get('/store', ['as' => 'front.store', 'uses' => 'HomeController@index']);

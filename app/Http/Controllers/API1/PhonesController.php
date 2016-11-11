@@ -11,7 +11,7 @@ use App\Models\Brand;
 use App\Http\Transformers\PhoneTransformer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
-class EmployeesController extends Controller
+class PhonesController extends Controller
 {
      /** @var \App\Models\Phone */
     private $phoneRepository;

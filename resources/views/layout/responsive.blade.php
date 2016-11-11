@@ -9,9 +9,13 @@
 
         <!-- Bootstrap -->
         <link href="/css/web.css" rel="stylesheet">
+	<link href="/css/main.css" rel="stylesheet">
 	<script type="text/javascript" src="js/angular/app/lib/angular.js"></script>
+	<script type="text/javascript" src="js/angular/app/lib/angular-route.js"></script>
 	<script type="text/javascript" src="js/angular/app/app.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/MainController.js"></script>
+	<script type="text/javascript" src="js/angular/app/controllers/TemplateController.js"></script>
+	<script type="text/javascript" src="js/angular/app/controllers/PhonesController.js"></script>
 
         <![endif]-->
     </head>

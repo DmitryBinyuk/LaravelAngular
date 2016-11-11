@@ -108,5 +108,29 @@
 	Converted:<br>
 	[[convertedHex]]
 
+
+	Http to Angular:<br>
+	[[laravelHttpResponse.data]]
+	<ul>
+	    <li ng-repeat="phone in laravelHttpResponse.data">
+		[[phone.name + ' ' + phone.brand_id]]
+	    </li>
+	</ul>
+	<div ng-controller="TemplateController">
+	    <a href="#test1">Test1</a>
+	    <a href="#test2">Test2</a>
+	    <a href="#testcontr">TestContr</a>
+	    <div ng-view></div>
+	</div>
+
     </div>
+
+Component1
+<phonel></phonel>dwsf<br>
+Component2
+<phopro></phopro>
+<br><br><br>
+
+<h3>Component3:</h3>
+<phones></phones>
 @endsection
