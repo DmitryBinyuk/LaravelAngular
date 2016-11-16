@@ -15,11 +15,24 @@
 	<script type="text/javascript" src="js/angular/app/app.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/MainController.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/TemplateController.js"></script>
-	<script type="text/javascript" src="js/angular/app/controllers/PhonesController.js"></script>
+	<script type="text/javascript" src="js/angular/app/controllers/PhoneListController.js"></script>
+	<script type="text/javascript" src="js/angular/app/controllers/PhoneDetailController.js"></script>
 
         <![endif]-->
     </head>
     <body>
+	<div class="header">
+	    <ul>
+		<li><a href="#phones">All phones</a></li>
+		<li><a href="#news">News</a></li>
+		<li><a href="#news">News</a></li>
+
+		<span class="header_search_label">Search</span>
+		<input class="header_search" name="phone_search">
+	    </ul>
+
+	</div>
+
         @yield('page_content')
     </body>
 </html>

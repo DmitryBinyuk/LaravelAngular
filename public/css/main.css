@@ -6,4 +6,87 @@
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.phone_list_image {
+    width: 180px;
+    height: 165px;
+}
+
+.phone_detail_image {
+    width: 400px;
+    height: 321px;
+}
+
+.phone_list_name {
+    vertical-align: top;
+    display: block;
+    float: left;
+}
+
+.block {
+    display: block;
+}
+
+.header {
+/*    width:100%;
+    height: 170px;*/
+    /*background-image: url('/img/komp41.jpg');*/
+/*    border: 0.5px solid grey;
+    position: relative;*/
+    margin-bottom: 50px;
+}
+
+.header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    /*opacity: 0.5;*/
+    height: 50px;
+}
+
+.header ul li {
+    float: left;
+    height: 50px;
+}
+
+.header ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: 50px;
+    vertical-align: center;
+}
+
+.header ul li a:hover {
+    background-color: grey;
+    height: 50px;
+    vertical-align: center;
+}
+
+.header_search {
+    position: absolute;
+    right: 10px;
+    margin-top: 14px;
+    float: left;
+}
+
+body {
+    margin: 0;
+}
+
+.header_search_label {
+    color: white;
+}
+
+.header_search_label {
+    position: absolute;
+    right: 40px;
+    float: left;
 }

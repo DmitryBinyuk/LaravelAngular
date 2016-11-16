@@ -18,4 +18,9 @@ class StoreController extends Controller
 
 	return view('frontend.store');
     }
+
+     public function phone() {
+
+	return view('frontend.phone');
+    }
 }

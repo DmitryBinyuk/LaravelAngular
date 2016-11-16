@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/', ['as' => 'front.home', 'uses' => 'StoreController@index']);
-
-
-
-Route::get('phones/list', 'API1\PhonesController@index');
+Route::get('/', function() {
+    return View::make('frontend.store');
+});
 
 Route::get('/phones', function () {
     return view('phones.list');
+});
+
+Route::get('/phone/{phoneId}', function () {
+    return view('phones.detail');
 });
 
 /*****************************************************************************/
@@ -27,9 +29,15 @@ Route::get('/phones', function () {
 
 Route::group(['prefix' => 'api/v1'], function () {
 
-    Route::get('phones/list', 'API1\PhonesController@index');
+    Route::get('phone', 'API1\PhonesController@index');
+    Route::get('phoner/{phoneId}', 'API1\PhonesController@show');
 
 });
 
 //Routes for learning
 Route::get('/store', ['as' => 'front.store', 'uses' => 'HomeController@index']);
+
+//redirect to frontend
+Route::any('{catchall}', function() {
+    return View::make('frontend.store');
+})->where('catchall', '.*');

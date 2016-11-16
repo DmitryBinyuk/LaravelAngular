@@ -25,24 +25,24 @@ app.service('hexify', function(){
     };
 });
 
-app.config(function($routeProvider){
-    $routeProvider
-    .when('/test1', {
-	template: "<p style='color:yellow;'>Test template for route</p>"
-    })
-    .when('/test2', {
-	template: "<p style='color:green;'>Test template for route 2</p>"
-    })
-    .otherwise({
-	template: "<p style='color:blue;'>Default template!</p>"
-    })
-    .when('/testcontr', {
-	controller: "TemplateController"
-    })
-});
+//app.config(function($routeProvider){
+//    $routeProvider
+//    .when('/test1', {
+//	template: "<p style='color:yellow;'>Test template for route</p>"
+//    })
+//    .when('/test2', {
+//	template: "<p style='color:green;'>Test template for route 2</p>"
+//    })
+//    .otherwise({
+//	template: "<p style='color:blue;'>Default template!</p>"
+//    })
+//    .when('/testcontr', {
+//	controller: "TemplateController"
+//    })
+//});
 
 app.component('phonel', {
-  template: '<h1>From component with love from [[$ctrl.from.name]]!</h1>',
+  template: '<h1>!!!!!From component with love from [[$ctrl.from.name]]!</h1>',
   controller: function() {
     this.from = {name: 'Vasya'};
   }
@@ -55,5 +55,21 @@ app.component('phopro', {
 
 app.component('phones', {
   templateUrl: 'phones',
-  controller: 'PhonesController'
+  controller: 'PhoneListController'
+});
+
+app.component('phonedetail', {
+  templateUrl: 'phone/:phoneId',
+  controller: 'PhoneDetailController'
+});
+
+app.config(function($routeProvider){
+    $routeProvider
+    .when('/phones', {
+	template: '<phones></phones>'
+    })
+    .when('/phono/:phoneId', {
+	template: '<phonedetail></phonedetail>'
+    })
+    .otherwise('/phones');
 });

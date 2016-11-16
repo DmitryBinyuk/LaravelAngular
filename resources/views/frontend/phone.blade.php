@@ -1,7 +1,7 @@
 @extends('layout.responsive')
+Detail
 
 @section('page_content')
 
-    <div ng-view></div>
-
+<phones></phones>
 @endsection

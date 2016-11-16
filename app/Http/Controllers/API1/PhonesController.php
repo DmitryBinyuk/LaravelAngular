@@ -69,7 +69,7 @@ class PhonesController extends Controller
      * @return Response
      */
     public function show($id) {
-        return Employee::find($id);
+        return Phone::find($id);
     }
 
     /**
