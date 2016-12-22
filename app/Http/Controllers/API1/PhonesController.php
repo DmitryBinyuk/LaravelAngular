@@ -1,25 +1,47 @@
 <?php
 
-namespace App\API1\Controllers;
+namespace App\Http\Controllers\API1;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Phone;
+use App\Models\Brand;
+use App\Http\Transformers\PhoneTransformer;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
-class EmployeesController extends Controller
+class PhonesController extends Controller
 {
+     /** @var \App\Models\Phone */
+    private $phoneRepository;
+
+    /**
+     * @param \App\Models\Phone $phoneRepository
+     */
+    public function __construct(Phone $phoneRepository)
+    {
+        $this->phoneRepository = $phoneRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index($id = null) {
-        if ($id == null) {
-            return Employee::orderBy('id', 'asc')->get();
-        } else {
-            return $this->show($id);
-        }
+    public function index() {
+
+//	$phones = Phone::all();
+
+	$phones = Phone::all();
+//		->where('id', 1);
+
+	$data = fractal()
+	    ->collection($phones)
+	    ->transformWith(new PhoneTransformer())
+	    ->toArray();
+
+        return response()->json($data);
     }
 
     /**
@@ -47,7 +69,7 @@ class EmployeesController extends Controller
      * @return Response
      */
     public function show($id) {
-        return Employee::find($id);
+        return Phone::find($id);
     }
 
     /**
