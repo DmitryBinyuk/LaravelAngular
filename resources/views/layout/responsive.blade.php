@@ -28,24 +28,25 @@
         <![endif]-->
     </head>
     <body>
-	<div class="header">
-	    <ul>
-		<li><a href="#phones">All phones</a></li>
-		<li><a href="#news">News</a></li>
-		<li><a href="#news">News</a></li>
-
-		<input ng-model="phone_search" class="header_search" name="phone_search" placeholder="Search">
-	    </ul>
-
+	<div class="wrapper">
+	<div class="main">
+	    <div class="header">
+		<ul>
+		    <li><a href="#phones">All phones</a></li>
+		    <li><a href="#news">News</a></li>
+		    <li><a href="#news">News</a></li>
+		    <input ng-model="phone_search" class="header_search" name="phone_search" placeholder="Search">
+		</ul>
+	    </div>
+    <!--[[phone_search]]-->
+	    <div class="container">
+		<div ui-view></div>
+	    </div>
+		@yield('page_content')
 	</div>
-<!--[[phone_search]]-->
-<div class="container">
-    <div ui-view></div>
-</div>
-        @yield('page_content')
-
-    <div id="footer">
-    &copy; CHISW developed by Dmitry
-    </div>
+	    <div id="footer">
+	    &copy; CHISW developed by Dmitry
+	    </div>
+	</div>
     </body>
 </html>
