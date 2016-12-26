@@ -22,7 +22,6 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
 	.state('phones', {
 	url: '/phones',
 	template: '<phones></phones>',
-//	controller: 'TodoController'
     });
 
     function redirectWhenLoggedOut($q, $injector) {

@@ -43,5 +43,9 @@
     <div ui-view></div>
 </div>
         @yield('page_content')
+
+    <div id="footer">
+    &copy; CHISW developed by Dmitry
+    </div>
     </body>
 </html>
