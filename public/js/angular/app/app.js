@@ -1,8 +1,49 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'ui.router', 'satellizer']);
 
-app.config(function($interpolateProvider){
+app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $authProvider, $provide){//, $stateProvider, $urlRouterProvider, $authProvider,$provide){
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
+    
+    $authProvider.loginUrl = '/api/authenticate';
+ 
+    $urlRouterProvider.otherwise('/login');
+
+    $stateProvider
+	.state('login', {
+	    url: '/login',
+	    templateUrl: '/js/angular/app/login.html',
+	    controller: 'AuthController'
+	})
+	.state('register', {
+	    url: '/register',
+	    templateUrl: '/js/angular/app/register.html',
+	    controller: 'AuthController'
+	})
+	.state('phones', {
+	url: '/phones',
+	template: '<phones></phones>',
+//	controller: 'TodoController'
+    });
+
+    function redirectWhenLoggedOut($q, $injector) {
+	return {
+	    responseError: function (rejection) {
+		var $state = $injector.get('$state');
+		var rejectionReasons = ['token_not_provided', 'token_expired', 'token_absent', 'token_invalid'];
+
+		angular.forEach(rejectionReasons, function (value, key) {
+		    if (rejection.data.error === value) {
+			localStorage.removeItem('user');
+			$state.go('login');
+		    }
+		});
+
+		return $q.reject(rejection);
+	    }
+	}
+    }
+
+    $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
 });
 
 app.filter('myCustomFilter', function(){
@@ -24,22 +65,6 @@ app.service('hexify', function(){
 	return x.toString(16);
     };
 });
-
-//app.config(function($routeProvider){
-//    $routeProvider
-//    .when('/test1', {
-//	template: "<p style='color:yellow;'>Test template for route</p>"
-//    })
-//    .when('/test2', {
-//	template: "<p style='color:green;'>Test template for route 2</p>"
-//    })
-//    .otherwise({
-//	template: "<p style='color:blue;'>Default template!</p>"
-//    })
-//    .when('/testcontr', {
-//	controller: "TemplateController"
-//    })
-//});
 
 app.component('phonel', {
   template: '<h1>!!!!!From component with love from [[$ctrl.from.name]]!</h1>',
@@ -64,12 +89,12 @@ app.component('phonedetail', {
 });
 
 app.config(function($routeProvider){
-    $routeProvider
-    .when('/phones', {
-	template: '<phones></phones>'
-    })
-    .when('/phono/:phoneId', {
-	template: '<phonedetail></phonedetail>'
-    })
-    .otherwise('/phones');
+//    $routeProvider
+//    .when('/phones', {
+//	template: '<phones></phones>'
+//    })
+//    .when('/phono/:phoneId', {
+//	template: '<phonedetail></phonedetail>'
+//    })
+//    .otherwise('/phones');
 });
