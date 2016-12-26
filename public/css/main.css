@@ -96,21 +96,21 @@ body {
     margin-bottom: 10px;
 }
 
-.main { /* основной блок, который должен растянуться до подвала */
-/*background: #999;  цвет фона основного блока (для наглядности) */
-min-height: 100%; /* задаем минимальную высоту основного блока */
+.main {
+    min-height: 100%;
 }
 
 
 #footer {
-    /*position: fixed;  Фиксированное положение */
+    position: fixed;
     left: 0; 
-    bottom: 0; /* Левый нижний угол */
-    padding: 10px; /* Поля вокруг текста */
-    background: #02b875; /* Цвет фона */
-    color: #fff; /* Цвет текста */
-    width: 100%; /* Ширина слоя */
+    bottom: 0;
+    padding: 10px;
+    background: #02b875;
+    color: #fff;
+    width: 100%;
     margin-top: 20px;
-    position: absolute;
-    height: 50px;
+    /*position: absolute;*/
+    height: 40px;
+    margin:auto;
    }
