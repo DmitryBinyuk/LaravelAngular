@@ -26,8 +26,8 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
 	url: '/phones',
 	template: '<phones></phones>',
     })
-    .state('phone', {
-	url: '/phone',
+    .state('/phone', {
+	url: '/phone/:phoneId',
 	template: '<phonedetail></phonedetail>',
     });
 
