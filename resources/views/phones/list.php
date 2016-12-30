@@ -10,7 +10,7 @@
     <ul>
 	<li ng-repeat="phone in laravelHttpResponse.data | filter:phone_search | filter:brandFilter"  class="phone_list_element">
 
-	    <a href="#phono/[[phone.id]]" class="phone_list_name">[[phone.name]]</a>
+	    <a href="#phone/[[phone.id]]" class="phone_list_name">[[phone.name]]</a>
 	    <a href="/phone/[[phone.id]]">
 		<img ng-src="[[phone.image]]" class="phone_list_image">
 	    </a>

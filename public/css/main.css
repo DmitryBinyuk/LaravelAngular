@@ -60,6 +60,16 @@
     vertical-align: center;
 }
 
+.header ul li p {
+    display: block;
+    color: #02b875;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: 50px;
+    vertical-align: center;
+}
+
 .header ul li a:hover {
     background-color: grey;
     height: 50px;
@@ -70,6 +80,13 @@
     position: absolute;
     right: 15px;
     margin-top: 14px;
+    float: left;
+}
+
+.logged_as_block {
+    position: absolute;
+    right: 215px;
+    margin-top: 3px;
     float: left;
 }
 
@@ -100,7 +117,6 @@ body {
     min-height: 100%;
 }
 
-
 #footer {
     position: fixed;
     left: 0; 
@@ -113,4 +129,4 @@ body {
     /*position: absolute;*/
     height: 40px;
     margin:auto;
-   }
+}

@@ -7,6 +7,6 @@ app.controller('PhoneListController', function($scope, $http) {
     $http.get('/api/v1/brands').then(function(response){
 	$scope.brands = response.data;
     });
-    console.log($scope.brands)
-
+//    console.log($scope.brands)
+//    console.log($rootScope.currentUser);
 });

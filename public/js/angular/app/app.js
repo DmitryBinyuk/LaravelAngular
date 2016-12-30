@@ -1,18 +1,21 @@
-var app = angular.module('app', ['ngRoute', 'ui.router', 'satellizer']);
+var app = angular.module('app', ['ngRoute', 'ui.router', 'satellizer', 'ngStorage']);
 
-app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $authProvider, $provide){//, $stateProvider, $urlRouterProvider, $authProvider,$provide){
+app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $authProvider, $provide){
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
     
     $authProvider.loginUrl = '/api/authenticate';
  
-    $urlRouterProvider.otherwise('/login');
+//    $urlRouterProvider.otherwise('/login');
 
     $stateProvider
 	.state('login', {
 	    url: '/login',
 	    templateUrl: '/js/angular/app/login.html',
-	    controller: 'AuthController'
+	    controller: 'AuthController',
+	    data: {
+		'noLogin': true
+	    }
 	})
 	.state('register', {
 	    url: '/register',
@@ -22,6 +25,10 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
 	.state('phones', {
 	url: '/phones',
 	template: '<phones></phones>',
+    })
+    .state('phone', {
+	url: '/phone',
+	template: '<phonedetail></phonedetail>',
     });
 
     function redirectWhenLoggedOut($q, $injector) {
@@ -44,6 +51,77 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
 
     $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
 });
+
+app.service('SessionService', [
+    '$injector',
+    function($injector, $rootScope) {
+      "use strict";
+
+      this.checkAccess = function(event, toState, toParams, fromState, fromParams) {
+        var $scope = $injector.get('$rootScope'),
+            $sessionStorage = $injector.get('$sessionStorage');
+    
+	$rootScope = $injector.get('$rootScope');
+
+        if (toState.data !== undefined) {
+          if (toState.data.noLogin !== undefined && toState.data.noLogin) {
+            // если нужно, выполняйте здесь какие-то действия 
+            // перед входом без авторизации
+          }
+        } else {
+          // вход с авторизацией
+	  var datos = sessionStorage.getItem('key');
+	  console.log('$sessionStorage: ', $sessionStorage.user);
+          if ($sessionStorage.user) {
+            $scope.$root.user = $sessionStorage.user;
+	    
+	    $rootScope.currentUserObject = JSON.parse($scope.$root.user);
+	    
+//	    console.log('root: ', $rootScope.currentUserObject.name);
+          } else {
+            // если пользователь не авторизован - отправляем на страницу авторизации
+            event.preventDefault();
+            $scope.$state.go('login');
+          }
+        }
+      };
+    }
+]);
+  
+app.run([
+  '$rootScope', '$state', '$stateParams', 'SessionService',
+  function ($rootScope, $state, $stateParams, SessionService) {
+
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+
+    $rootScope.user = null;
+
+    // Здесь мы будем проверять авторизацию
+    $rootScope.$on('$stateChangeStart',
+      function (event, toState, toParams, fromState, fromParams) {
+        SessionService.checkAccess(event, toState, toParams, fromState, fromParams);
+	
+	 $rootScope.name = $rootScope.currentUserObject.name;
+//	window.userName = $rootScope.currentUserObject.name
+	console.log('roo_ ', $rootScope.currentUserObject.name);
+      }
+    );
+  }
+])  
+
+app.factory('Auth', function(){
+var user;
+
+return{
+    setUser : function(aUser){
+        user = aUser;
+    },
+    isLoggedIn : function(){
+        return(user)? user : false;
+    }
+  }
+})
 
 app.filter('myCustomFilter', function(){
     return function(x){
