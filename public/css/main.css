@@ -6,8 +6,8 @@
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
-    width: 80%;
-    margin-left: 10%;
+    width: 70%;
+    margin-left: 20%;
 }
 
 .phone_list_image {
@@ -89,5 +89,18 @@ body {
     position: absolute;
     right: 40px;
     float: left;
-    //
 }
+
+.left_bar {
+    float: left;
+    width: 30%;
+    margin-left: 10px;
+}
+
+/*.wrapper{
+    width: 100%;
+}*/
+
+/*.phones_container_list{
+    width: 70%;
+}*/

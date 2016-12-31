@@ -9,6 +9,7 @@ app.directive("myCustomDirective", function(){
     return {
         template: "Text from my custom  directive"
     };
+});    
 
 app.filter('myCustomFilter', function(){
     return function(x){

@@ -26,9 +26,8 @@
 		<li><a href="#phones">All phones</a></li>
 		<li><a href="#news">News</a></li>
 		<li><a href="#news">News</a></li>
-
-		<span class="header_search_label">Search</span>
-		<input class="header_search" name="phone_search">
+                
+                     <input class="header_search" name="phone_search" ng-model="phoneSearch1" placeholder="Search">
 	    </ul>
 
 	</div>
