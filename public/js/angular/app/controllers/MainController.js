@@ -2,6 +2,8 @@ app.controller('MainController', function($scope, $location, $http, hexify) {
     $scope.firstName = "Dmitry";
     $scope.lastName = "Finagan";
     
+//    $rootScope.name = "Dmitry";
+    
     $scope.fullName = function(){
 	return $scope.firstName + " " + $scope.lastName;
     }

@@ -1,5 +1,5 @@
 <div>
-    Phone detail for:<br>
+    Phone detail for: [[name]]<br>
     <div class="block">
 	[[phoneDetailResponse.name]]
     </div>

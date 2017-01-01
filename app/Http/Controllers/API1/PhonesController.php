@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Phone;
 use App\Models\Brand;
 use App\Http\Transformers\PhoneTransformer;
+use App\Http\Transformers\BrandTransformer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class PhonesController extends Controller
@@ -103,5 +104,29 @@ class PhonesController extends Controller
         $employee->delete();
 
         return "Employee record successfully deleted #" . $request->input('id');
+    }
+
+    /**
+     * Display a listing of brands.
+     *
+     * @return Response
+     */
+    public function brands() {
+
+//	$brands = Brand::select('name')
+//		    ->get();
+
+	$brands = Brand::all();
+
+//	$data = fractal()
+//	    ->collection($brands)
+//	    ->transformWith(new BrandTransformer())
+//	    ->toArray();
+
+	$namesArray = [];
+
+        return $brands;
+
+//	return Response::json($brands);
     }
 }

@@ -1,8 +1,55 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'ui.router', 'satellizer', 'ngStorage']);
 
-app.config(function($interpolateProvider){
+app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $authProvider, $provide){
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
+    
+    $authProvider.loginUrl = '/api/authenticate';
+ 
+//    $urlRouterProvider.otherwise('/login');
+
+    $stateProvider
+	.state('login', {
+	    url: '/login',
+	    templateUrl: '/js/angular/app/login.html',
+	    controller: 'AuthController',
+	    data: {
+		'noLogin': true
+	    }
+	})
+	.state('register', {
+	    url: '/register',
+	    templateUrl: '/js/angular/app/register.html',
+	    controller: 'AuthController'
+	})
+	.state('phones', {
+	url: '/phones',
+	template: '<phones></phones>',
+    })
+    .state('/phone', {
+	url: '/phone/:phoneId',
+	template: '<phonedetail></phonedetail>',
+    });
+
+    function redirectWhenLoggedOut($q, $injector) {
+	return {
+	    responseError: function (rejection) {
+		var $state = $injector.get('$state');
+		var rejectionReasons = ['token_not_provided', 'token_expired', 'token_absent', 'token_invalid'];
+
+		angular.forEach(rejectionReasons, function (value, key) {
+		    if (rejection.data.error === value) {
+			localStorage.removeItem('user');
+			$state.go('login');
+		    }
+		});
+
+		return $q.reject(rejection);
+	    }
+	}
+    }
+
+    $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
 });
 
 app.directive("myCustomDirective", function(){
@@ -10,6 +57,77 @@ app.directive("myCustomDirective", function(){
         template: "Text from my custom  directive"
     };
 });    
+
+app.service('SessionService', [
+    '$injector',
+    function($injector, $rootScope) {
+      "use strict";
+
+      this.checkAccess = function(event, toState, toParams, fromState, fromParams) {
+        var $scope = $injector.get('$rootScope'),
+            $sessionStorage = $injector.get('$sessionStorage');
+    
+	$rootScope = $injector.get('$rootScope');
+
+        if (toState.data !== undefined) {
+          if (toState.data.noLogin !== undefined && toState.data.noLogin) {
+            // если нужно, выполняйте здесь какие-то действия 
+            // перед входом без авторизации
+          }
+        } else {
+          // вход с авторизацией
+	  var datos = sessionStorage.getItem('key');
+	  console.log('$sessionStorage: ', $sessionStorage.user);
+          if ($sessionStorage.user) {
+            $scope.$root.user = $sessionStorage.user;
+	    
+	    $rootScope.currentUserObject = JSON.parse($scope.$root.user);
+	    
+//	    console.log('root: ', $rootScope.currentUserObject.name);
+          } else {
+            // если пользователь не авторизован - отправляем на страницу авторизации
+            event.preventDefault();
+            $scope.$state.go('login');
+          }
+        }
+      };
+    }
+]);
+  
+app.run([
+  '$rootScope', '$state', '$stateParams', 'SessionService',
+  function ($rootScope, $state, $stateParams, SessionService) {
+
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+
+    $rootScope.user = null;
+
+    // Здесь мы будем проверять авторизацию
+    $rootScope.$on('$stateChangeStart',
+      function (event, toState, toParams, fromState, fromParams) {
+        SessionService.checkAccess(event, toState, toParams, fromState, fromParams);
+	
+	 $rootScope.name = $rootScope.currentUserObject.name;
+//	window.userName = $rootScope.currentUserObject.name
+	console.log('roo_ ', $rootScope.currentUserObject.name);
+      }
+    );
+  }
+])  
+
+app.factory('Auth', function(){
+var user;
+
+return{
+    setUser : function(aUser){
+        user = aUser;
+    },
+    isLoggedIn : function(){
+        return(user)? user : false;
+    }
+  }
+})
 
 app.filter('myCustomFilter', function(){
     return function(x){
@@ -30,22 +148,6 @@ app.service('hexify', function(){
 	return x.toString(16);
     };
 });
-
-//app.config(function($routeProvider){
-//    $routeProvider
-//    .when('/test1', {
-//	template: "<p style='color:yellow;'>Test template for route</p>"
-//    })
-//    .when('/test2', {
-//	template: "<p style='color:green;'>Test template for route 2</p>"
-//    })
-//    .otherwise({
-//	template: "<p style='color:blue;'>Default template!</p>"
-//    })
-//    .when('/testcontr', {
-//	controller: "TemplateController"
-//    })
-//});
 
 app.component('phonel', {
   template: '<h1>!!!!!From component with love from [[$ctrl.from.name]]!</h1>',
@@ -70,12 +172,12 @@ app.component('phonedetail', {
 });
 
 app.config(function($routeProvider){
-    $routeProvider
-    .when('/phones', {
-	template: '<phones></phones>'
-    })
-    .when('/phono/:phoneId', {
-	template: '<phonedetail></phonedetail>'
-    })
-    .otherwise('/phones');
+//    $routeProvider
+//    .when('/phones', {
+//	template: '<phones></phones>'
+//    })
+//    .when('/phono/:phoneId', {
+//	template: '<phonedetail></phonedetail>'
+//    })
+//    .otherwise('/phones');
 });

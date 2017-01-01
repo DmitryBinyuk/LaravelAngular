@@ -1,6 +1,5 @@
 @extends('layout.responsive')
 
-
 @section('page_content')
     <div class="container">
             <div class="content">
@@ -11,6 +10,6 @@
 	<div>
 
 	</div>
-	
+
     </div>
 @endsection

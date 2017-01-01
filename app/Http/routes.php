@@ -11,6 +11,11 @@
 |
 */
 
+//Authentfication routes
+Route::post('api/register', 'TokenAuthController@register');
+Route::post('api/authenticate', 'TokenAuthController@authenticate');
+Route::get('api/authenticate/user', 'TokenAuthController@getAuthenticatedUser');
+
 Route::get('/', function() {
     return View::make('frontend.store');
 });
@@ -31,6 +36,8 @@ Route::group(['prefix' => 'api/v1'], function () {
 
     Route::get('phone', 'API1\PhonesController@index');
     Route::get('phoner/{phoneId}', 'API1\PhonesController@show');
+
+    Route::get('brands', 'API1\PhonesController@brands');
 
 });
 
