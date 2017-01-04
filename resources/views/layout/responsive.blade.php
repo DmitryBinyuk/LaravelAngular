@@ -11,15 +11,25 @@
         <link href="/css/web.css" rel="stylesheet">
 	<link href="/css/main.css" rel="stylesheet">
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	
 	<script type="text/javascript" src="js/angular/app/lib/angular.js"></script>
 	<script type="text/javascript" src="js/angular/app/lib/angular-route.js"></script>
+	<script type="text/javascript" src="js/angular/app/lib/dirPagination.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<!--  JWT  -->
 	<script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script type="text/javascript" src="js/angular/app/lib/satellizer.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
 	<!--  JWT  -->
+
 	<script type="text/javascript" src="js/angular/app/app.js"></script>
+	<script type="text/javascript" src="js/angular/app/services/sessionService.js"></script>
+	<script type="text/javascript" src="js/angular/app/services/commentService.js"></script>
+
+
 	<script type="text/javascript" src="js/angular/app/controllers/MainController.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/TemplateController.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/PhoneListController.js"></script>
@@ -36,7 +46,7 @@
 		    <li><a href="#phones">All phones</a></li>
 		    <li><a href="#news">News</a></li>
 		    <li><a href="#news">News</a></li>
-		    <li class="logged_as_block" ng-if="[[name]] != undefined"><p>Logged as: [[name]]</p></li>
+		    <li class="logged_as_block" ng-if="[[name]] != undefined"><p>Logged as: [[currentUserName]]</p></li>
 		    <input ng-model="phone_search" class="header_search" name="phone_search" placeholder="Search">
 		</ul>
 	    </div>

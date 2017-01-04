@@ -7,7 +7,6 @@ app.controller('AuthController',  function($auth, $state,$http,$rootScope, $scop
     $scope.loginErrorText='';
 
         $scope.login = function() {
-//	    alert('eee');
 
             var credentials = {
                 email: $scope.email,

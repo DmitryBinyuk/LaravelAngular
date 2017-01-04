@@ -32,10 +32,7 @@ class PhonesController extends Controller
      */
     public function index() {
 
-//	$phones = Phone::all();
-
 	$phones = Phone::all();
-//		->where('id', 1);
 
 	$data = fractal()
 	    ->collection($phones)

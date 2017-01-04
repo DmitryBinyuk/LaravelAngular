@@ -35,7 +35,10 @@ Route::get('/phone/{phoneId}', function () {
 Route::group(['prefix' => 'api/v1'], function () {
 
     Route::get('phone', 'API1\PhonesController@index');
-    Route::get('phoner/{phoneId}', 'API1\PhonesController@show');
+    Route::get('phone/{phoneId}', 'API1\PhonesController@show');
+
+    Route::get('comment/{phoneId}', 'API1\CommentsController@index');
+    Route::post('comment', 'API1\CommentsController@store');
 
     Route::get('brands', 'API1\PhonesController@brands');
 

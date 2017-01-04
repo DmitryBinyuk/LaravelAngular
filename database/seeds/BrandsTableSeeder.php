@@ -16,11 +16,11 @@ class BrandsTableSeeder extends Seeder
 
 	$brands = json_decode($brandsJson, true);
 
-	foreach($brands as $brand){
-	    $newBrand = Brand::create([
-			'name' => $brand['name'],
-		    ]);
-	    $newBrand->save();
-	}
+//	foreach($brands as $brand){
+//	    $newBrand = Brand::create([
+//			'name' => $brand['name'],
+//		    ]);
+//	    $newBrand->save();
+//	}
     }
 }

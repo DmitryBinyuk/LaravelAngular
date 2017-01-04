@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ui.router', 'satellizer', 'ngStorage']);
+var app = angular.module('app', ['ngRoute', 'ui.router', 'satellizer', 'ngStorage', 'commentService', 'session', 'angularUtils.directives.dirPagination']);
 
 app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $authProvider, $provide){
     $interpolateProvider.startSymbol('[[');
@@ -6,7 +6,7 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
     
     $authProvider.loginUrl = '/api/authenticate';
  
-//    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/phones');
 
     $stateProvider
 	.state('login', {
@@ -51,42 +51,6 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
 
     $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
 });
-
-app.service('SessionService', [
-    '$injector',
-    function($injector, $rootScope) {
-      "use strict";
-
-      this.checkAccess = function(event, toState, toParams, fromState, fromParams) {
-        var $scope = $injector.get('$rootScope'),
-            $sessionStorage = $injector.get('$sessionStorage');
-    
-	$rootScope = $injector.get('$rootScope');
-
-        if (toState.data !== undefined) {
-          if (toState.data.noLogin !== undefined && toState.data.noLogin) {
-            // если нужно, выполняйте здесь какие-то действия 
-            // перед входом без авторизации
-          }
-        } else {
-          // вход с авторизацией
-	  var datos = sessionStorage.getItem('key');
-	  console.log('$sessionStorage: ', $sessionStorage.user);
-          if ($sessionStorage.user) {
-            $scope.$root.user = $sessionStorage.user;
-	    
-	    $rootScope.currentUserObject = JSON.parse($scope.$root.user);
-	    
-//	    console.log('root: ', $rootScope.currentUserObject.name);
-          } else {
-            // если пользователь не авторизован - отправляем на страницу авторизации
-            event.preventDefault();
-            $scope.$state.go('login');
-          }
-        }
-      };
-    }
-]);
   
 app.run([
   '$rootScope', '$state', '$stateParams', 'SessionService',
@@ -102,7 +66,7 @@ app.run([
       function (event, toState, toParams, fromState, fromParams) {
         SessionService.checkAccess(event, toState, toParams, fromState, fromParams);
 	
-	 $rootScope.name = $rootScope.currentUserObject.name;
+	 $rootScope.currentUserName = $rootScope.currentUserObject.name;
 //	window.userName = $rootScope.currentUserObject.name
 	console.log('roo_ ', $rootScope.currentUserObject.name);
       }
