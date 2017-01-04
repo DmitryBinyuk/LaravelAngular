@@ -17,7 +17,7 @@ app.controller('PhoneDetailController', function($scope, $rootScope, $http, $sta
     
     //Pagination params
     $scope.currentPage = 1;
-    $scope.pageSize = 10;
+    $scope.pageSize = 8;
 
     Comment.get(phoneId)
         .success(function(data) {

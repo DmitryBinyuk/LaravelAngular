@@ -146,3 +146,15 @@ body {
     width: 40%!important;
     margin-top: 30px;
 }
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+    margin-bottom: 80px!important;
+}
+
+.comments_list {
+    list-style-type: none;
+}

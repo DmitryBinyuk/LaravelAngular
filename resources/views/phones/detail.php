@@ -18,24 +18,24 @@
 	    </div>
 
 	    <div class="form-group text-right">
-		<button type="submit" class="btn btn-primary btn-lg">Add comment</button>
+		<button type="submit" class="btn btn-primary btn-lg pull-left">Add comment</button>
 	    </div>
 	</form>
     </div>
+    <div class="block">
+	<div class="block comment">
+	    <p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
 
-    <div class="block comment">
-	<p class="text-center" ng-show="loading"><span class="fa fa-meh-o fa-5x fa-spin"></span></p>
+	    <ul class="comments_list">
+		<li dir-paginate="comment in comments.data | filter:q | itemsPerPage: pageSize" ng-hide="loading" current-page="currentPage">
+		    <h3>Comment #[[comment.id]] <small>by {{ comment.author }}</h3>
+		    <p>{{ comment.text }}</p>
 
-<!--	<div class="comment" ng-hide="loading" ng-repeat="comment in comments.data">
-	    <h3>Comment #[[comment.id]] <small>by {{ comment.author }}</h3>
-	    <p>{{ comment.text }}</p>
+		    <p><a href="#" ng-click="deleteComment(comment.id)" class="text-muted">Delete</a></p>
+		</li>
 
-	    <p><a href="#" ng-click="deleteComment(comment.id)" class="text-muted">Delete</a></p>
-	</div>-->
-	<ul>
-                <li dir-paginate="comment in comments.data | filter:q | itemsPerPage: pageSize" current-page="currentPage">{{ comment.author }}</li>
-
-        </ul>
-<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/js/angular/app/pagination.html"></dir-pagination-controls>
+	    </ul>
+	<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/js/angular/app/pagination-phones.html"></dir-pagination-controls>
+	</div>
     </div>
 </div>

@@ -11,7 +11,7 @@
         <link href="/css/web.css" rel="stylesheet">
 	<link href="/css/main.css" rel="stylesheet">
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
-	
+
 	<script type="text/javascript" src="js/angular/app/lib/angular.js"></script>
 	<script type="text/javascript" src="js/angular/app/lib/angular-route.js"></script>
 	<script type="text/javascript" src="js/angular/app/lib/dirPagination.js"></script>
