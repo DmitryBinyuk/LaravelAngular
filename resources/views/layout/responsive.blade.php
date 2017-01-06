@@ -34,6 +34,7 @@
 	<script type="text/javascript" src="js/angular/app/controllers/TemplateController.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/PhoneListController.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/PhoneDetailController.js"></script>
+	<script type="text/javascript" src="js/angular/app/controllers/ProfileController.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/AuthController.js"></script>
 
         <![endif]-->
@@ -43,10 +44,10 @@
 	<div class="main">
 	    <div class="header">
 		<ul>
-		    <li><a href="#phones">All phones</a></li>
-		    <li><a href="#news">News</a></li>
-		    <li><a href="#news">News</a></li>
-		    <li class="logged_as_block" ng-if="[[name]] != undefined"><p>Logged as: [[currentUserName]]</p></li>
+		    <li><a class="main_header_link" href="#phones">All phones</a></li>
+		    <li><a class="main_header_link" href="#news">News</a></li>
+		    <li><a class="main_header_link" href="#news">News</a></li>
+		    <li class="logged_as_block" ng-if="[[name]] != undefined">Logged as: <a href="#profile"> [[currentUserName]] </a></li>
 		    <input ng-model="phone_search" class="header_search" name="phone_search" placeholder="Search">
 		</ul>
 	    </div>

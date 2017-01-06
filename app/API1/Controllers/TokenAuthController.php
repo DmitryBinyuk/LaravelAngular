@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\API1\Controllers;
 
 use App\Http\Controllers\Controller;
 use JWTAuth;

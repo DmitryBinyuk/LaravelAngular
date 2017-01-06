@@ -4,7 +4,7 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
     
-    $authProvider.loginUrl = '/api/authenticate';
+    $authProvider.loginUrl = '/api/v1/authenticate';
  
     $urlRouterProvider.otherwise('/phones');
 
@@ -20,7 +20,10 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
 	.state('register', {
 	    url: '/register',
 	    templateUrl: '/js/angular/app/register.html',
-	    controller: 'AuthController'
+	    controller: 'AuthController',
+	    data: {
+		'noLogin': true
+	    }
 	})
 	.state('phones', {
 	url: '/phones',
@@ -29,6 +32,10 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
     .state('/phone', {
 	url: '/phone/:phoneId',
 	template: '<phonedetail></phonedetail>',
+    })
+    .state('/profile', {
+	url: '/profile',
+	template: '<profile></profile>',
     });
 
     function redirectWhenLoggedOut($q, $injector) {
@@ -67,7 +74,7 @@ app.run([
         SessionService.checkAccess(event, toState, toParams, fromState, fromParams);
 	
 	 $rootScope.currentUserName = $rootScope.currentUserObject.name;
-//	window.userName = $rootScope.currentUserObject.name
+	 
 	console.log('roo_ ', $rootScope.currentUserObject.name);
       }
     );
@@ -127,6 +134,11 @@ app.component('phones', {
 app.component('phonedetail', {
   templateUrl: 'phone/:phoneId',
   controller: 'PhoneDetailController'
+});
+
+app.component('profile', {
+  templateUrl: 'profile',
+  controller: 'ProfileController'
 });
 
 app.config(function($routeProvider){

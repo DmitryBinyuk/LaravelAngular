@@ -15,15 +15,12 @@ app.controller('AuthController',  function($auth, $state,$http,$rootScope, $scop
 
             $auth.login(credentials).then(function() {
 
-                return $http.get('api/authenticate/user');
+                return $http.get('/api/v1/authenticate/user');
 
             }, function(error) {
                 $scope.loginError = true;
-                $scope.loginErrorText = error.data.error;
-//		alert('error');
 
             }).then(function(response) {
-//		alert('setted');
                 $rootScope.currentUser = response.data.user;
                 $scope.loginError = false;
                 $scope.loginErrorText = '';
@@ -42,7 +39,7 @@ app.controller('AuthController',  function($auth, $state,$http,$rootScope, $scop
 
         $scope.register = function () {
 
-            $http.post('/api/register',$scope.newUser)
+            $http.post('/api/v1/register',$scope.newUser)
                 .success(function(data){
                     $scope.email=$scope.newUser.email;
                     $scope.password=$scope.newUser.password;

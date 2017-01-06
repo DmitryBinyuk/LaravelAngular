@@ -21,7 +21,7 @@ angular.module('commentService', [])
 
         // destroy a comment
         destroy : function(id) {
-            return $http.delete('/api/comments/' + id);
+            return $http.delete('/api/v1/comment/' + id);
         }
     }
 

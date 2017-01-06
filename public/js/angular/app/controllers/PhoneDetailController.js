@@ -60,7 +60,7 @@ app.controller('PhoneDetailController', function($scope, $rootScope, $http, $sta
             .success(function(data) {
 
                 // if successful, we'll need to refresh the comment list
-                Comment.get()
+                Comment.get(phoneId)
                     .success(function(getData) {
                         $scope.comments = getData;
                         $scope.loading = false;
