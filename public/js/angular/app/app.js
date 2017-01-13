@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ui.router', 'satellizer', 'ngStorage', 'commentService', 'session', 'angularUtils.directives.dirPagination']);
+var app = angular.module('app', ['ngRoute', 'ui.router', 'satellizer', 'ngStorage', 'commentService', 'profileService', 'session', 'angularUtils.directives.dirPagination']);
 
 app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $authProvider, $provide){
     $interpolateProvider.startSymbol('[[');
@@ -74,8 +74,10 @@ app.run([
         SessionService.checkAccess(event, toState, toParams, fromState, fromParams);
 	
 	 $rootScope.currentUserName = $rootScope.currentUserObject.name;
+	 $rootScope.currentUserEmail = $rootScope.currentUserObject.email;
+	 $rootScope.currentUserId = $rootScope.currentUserObject.id;
 	 
-	console.log('roo_ ', $rootScope.currentUserObject.name);
+//	console.log('roo_ ', $rootScope.currentUserObject.name);
       }
     );
   }

@@ -1,23 +1,40 @@
-app.controller('ProfileController', function($scope, $rootScope, $http, $stateParams, $injector) {
-    
-//$http.get('/api/v1/profile').then(function(response){
-//	$scope.phoneDetailData = response.data;
-//    });
+app.controller('ProfileController', function($scope, $rootScope, $http, $stateParams, $injector, Profile) {
+    $sessionStorage = $injector.get('$sessionStorage');
+
+    $scope.profileUserName = $rootScope.currentUserName;
+    $scope.profileUserEmail = $rootScope.currentUserEmail;
 
     $sessionStorage = $injector.get('$sessionStorage');
-    console.log('aaa', $sessionStorage.user);
+    
+//    alert($rootScope.currentUserObject.name);
+    
+    $scope.profileData = {};
+    $scope.updatedUser = {};
+    $scope.profileHasErrors = false;
+    $scope.profileUpdate = function() {
 	
-    $scope.profileUpdate = function () {
-	$sessionStorage = $injector.get('$sessionStorage');
-	console.log('aaa', $sessionStorage.user);
+	$scope.profileData.id = $rootScope.currentUserId;
+	
+        Profile.update($scope.profileData)
+            .success(function(data) {
+		
+		$rootScope.currentUserName = $scope.profileData.name;
+		
+		$rootScope.currentUserObject.name = $scope.profileData.name;
+		$rootScope.currentUserEmail = $scope.profileData.email;
+		$rootScope.currentUserId = $scope.profileData.id;
+		
+		$scope.updatedUser.name = $scope.profileData.name;
+		$scope.updatedUser.email = $scope.profileData.email;
+		$scope.updatedUser.id = $scope.profileData.id;
 
-	$http.post('/api/v1/profile',$scope.newUser)
-	    .success(function(data){
-		$scope.email=$scope.newUser.email;
-		$scope.password=$scope.newUser.password;
-		$scope.login();
-	})
-
+		$sessionStorage.user = $scope.updatedUser;
+            })
+            .error(function(data) {
+		$scope.profileHasErrors = true;
+		$scope.errorText = data[Object.keys(data)[0]];
+		console.log(data[Object.keys(data)[0][0]]);
+            });
     };
 
 });

@@ -28,6 +28,7 @@
 	<script type="text/javascript" src="js/angular/app/app.js"></script>
 	<script type="text/javascript" src="js/angular/app/services/sessionService.js"></script>
 	<script type="text/javascript" src="js/angular/app/services/commentService.js"></script>
+	<script type="text/javascript" src="js/angular/app/services/profileService.js"></script>
 
 
 	<script type="text/javascript" src="js/angular/app/controllers/MainController.js"></script>
@@ -47,7 +48,7 @@
 		    <li><a class="main_header_link" href="#phones">All phones</a></li>
 		    <li><a class="main_header_link" href="#news">News</a></li>
 		    <li><a class="main_header_link" href="#news">News</a></li>
-		    <li class="logged_as_block" ng-if="[[name]] != undefined">Logged as: <a href="#profile"> [[currentUserName]] </a></li>
+		    <li class="logged_as_block" ng-if="typeof [[currentUserName]] !== undefined">Logged as: <a href="#profile"> [[currentUserName]] </a></li>
 		    <input ng-model="phone_search" class="header_search" name="phone_search" placeholder="Search">
 		</ul>
 	    </div>

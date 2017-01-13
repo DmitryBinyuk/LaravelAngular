@@ -169,3 +169,22 @@ body {
 .profile_name_input {
     width: 40%!important;
 }
+
+.profile_line {
+    color: #ddd;
+    background-color: #ddd;
+    height: 1px;
+
+}
+input.ng-invalid-required{
+    border:1.5px solid red;
+}
+
+.profile_error {
+    color: red;
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #E2A9A4;
+}
