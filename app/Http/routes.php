@@ -11,13 +11,12 @@
 |
 */
 
-//Authentfication routes
-Route::post('api/register', 'TokenAuthController@register');
-Route::post('api/authenticate', 'TokenAuthController@authenticate');
-Route::get('api/authenticate/user', 'TokenAuthController@getAuthenticatedUser');
-
 Route::get('/', function() {
     return View::make('frontend.store');
+});
+
+Route::get('/profile', function() {
+    return View::make('frontend.profile');
 });
 
 Route::get('/phones', function () {
@@ -32,12 +31,22 @@ Route::get('/phone/{phoneId}', function () {
 /*   API routes
 /*****************************************************************************/
 
-Route::group(['prefix' => 'api/v1'], function () {
+Route::group(['prefix' => 'api/v1', 'namespace' => 'API1\Controllers'], function () {
 
-    Route::get('phone', 'API1\PhonesController@index');
-    Route::get('phoner/{phoneId}', 'API1\PhonesController@show');
+    Route::get('phone', 'PhonesController@index');
+    Route::get('phone/{phoneId}', 'PhonesController@show');
+    Route::get('brands', 'PhonesController@brands');
 
-    Route::get('brands', 'API1\PhonesController@brands');
+    Route::get('comment/{phoneId}', 'CommentsController@index');
+    Route::post('comment', 'CommentsController@store');
+    Route::delete('comment/{commentId}', 'CommentsController@destroy');
+
+    Route::post('profile', 'ProfileController@update');
+
+    //Authentfication routes
+    Route::post('register', 'TokenAuthController@register');
+    Route::post('authenticate', 'TokenAuthController@authenticate');
+    Route::get('authenticate/user', 'TokenAuthController@getAuthenticatedUser');
 
 });
 

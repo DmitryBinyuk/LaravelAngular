@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API1;
+namespace App\API1\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -9,9 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Phone;
 use App\Models\Brand;
 use App\Http\Transformers\PhoneTransformer;
+use App\Http\Transformers\BrandTransformer;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
-class EmployeesController extends Controller
+class PhonesController extends Controller
 {
      /** @var \App\Models\Phone */
     private $phoneRepository;
@@ -31,10 +32,7 @@ class EmployeesController extends Controller
      */
     public function index() {
 
-//	$phones = Phone::all();
-
 	$phones = Phone::all();
-//		->where('id', 1);
 
 	$data = fractal()
 	    ->collection($phones)
@@ -69,7 +67,7 @@ class EmployeesController extends Controller
      * @return Response
      */
     public function show($id) {
-        return Employee::find($id);
+        return Phone::find($id);
     }
 
     /**
@@ -103,5 +101,29 @@ class EmployeesController extends Controller
         $employee->delete();
 
         return "Employee record successfully deleted #" . $request->input('id');
+    }
+
+    /**
+     * Display a listing of brands.
+     *
+     * @return Response
+     */
+    public function brands() {
+
+//	$brands = Brand::select('name')
+//		    ->get();
+
+	$brands = Brand::all();
+
+//	$data = fractal()
+//	    ->collection($brands)
+//	    ->transformWith(new BrandTransformer())
+//	    ->toArray();
+
+	$namesArray = [];
+
+        return $brands;
+
+//	return Response::json($brands);
     }
 }

@@ -16,15 +16,15 @@ class PhonesTableSeeder extends Seeder
 
 	$phones = json_decode($phonesJson, true);
 
-	foreach($phones as $phone){
-	    $newPhone = Phone::create([
-			'name' => $phone['name'],
-			'brand_id' => $phone['brand_id'],
-			'processor' => $phone['processor'],
-			'description' => $phone['description'],
-			'image' => $phone['image'],
-		    ]);
-	    $newPhone->save();
-	}
+//	foreach($phones as $phone){
+//	    $newPhone = Phone::create([
+//			'name' => $phone['name'],
+//			'brand_id' => $phone['brand_id'],
+//			'processor' => $phone['processor'],
+//			'description' => $phone['description'],
+//			'image' => $phone['image'],
+//		    ]);
+//	    $newPhone->save();
+//	}
     }
 }

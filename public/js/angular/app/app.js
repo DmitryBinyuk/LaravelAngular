@@ -1,12 +1,12 @@
-var app = angular.module('app', ['ngRoute', 'ui.router', 'satellizer', 'ngStorage']);
+var app = angular.module('app', ['ngRoute', 'ui.router', 'satellizer', 'ngStorage', 'commentService', 'profileService', 'session', 'angularUtils.directives.dirPagination']);
 
 app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $authProvider, $provide){
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
     
-    $authProvider.loginUrl = '/api/authenticate';
+    $authProvider.loginUrl = '/api/v1/authenticate';
  
-//    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/phones');
 
     $stateProvider
 	.state('login', {
@@ -20,7 +20,10 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
 	.state('register', {
 	    url: '/register',
 	    templateUrl: '/js/angular/app/register.html',
-	    controller: 'AuthController'
+	    controller: 'AuthController',
+	    data: {
+		'noLogin': true
+	    }
 	})
 	.state('phones', {
 	url: '/phones',
@@ -29,6 +32,10 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
     .state('/phone', {
 	url: '/phone/:phoneId',
 	template: '<phonedetail></phonedetail>',
+    })
+    .state('/profile', {
+	url: '/profile',
+	template: '<profile></profile>',
     });
 
     function redirectWhenLoggedOut($q, $injector) {
@@ -108,9 +115,11 @@ app.run([
       function (event, toState, toParams, fromState, fromParams) {
         SessionService.checkAccess(event, toState, toParams, fromState, fromParams);
 	
-	 $rootScope.name = $rootScope.currentUserObject.name;
-//	window.userName = $rootScope.currentUserObject.name
-	console.log('roo_ ', $rootScope.currentUserObject.name);
+	 $rootScope.currentUserName = $rootScope.currentUserObject.name;
+	 $rootScope.currentUserEmail = $rootScope.currentUserObject.email;
+	 $rootScope.currentUserId = $rootScope.currentUserObject.id;
+	 
+//	console.log('roo_ ', $rootScope.currentUserObject.name);
       }
     );
   }
@@ -169,6 +178,11 @@ app.component('phones', {
 app.component('phonedetail', {
   templateUrl: 'phone/:phoneId',
   controller: 'PhoneDetailController'
+});
+
+app.component('profile', {
+  templateUrl: 'profile',
+  controller: 'ProfileController'
 });
 
 app.config(function($routeProvider){
