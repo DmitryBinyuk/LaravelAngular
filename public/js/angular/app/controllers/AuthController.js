@@ -14,7 +14,7 @@ app.controller('AuthController',  function($auth, $state,$http,$rootScope, $scop
             }
 
             $auth.login(credentials).then(function() {
-
+//alert(1);
                 return $http.get('/api/v1/authenticate/user');
 
             }, function(error) {

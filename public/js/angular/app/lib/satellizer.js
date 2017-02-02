@@ -13,7 +13,7 @@
     var Config = (function () {
         function Config() {
             this.baseUrl = '/';
-            this.loginUrl = '/auth/login';
+            this.loginUrl = '/api/v1/authenticate';
             this.signupUrl = '/auth/signup';
             this.unlinkUrl = '/auth/unlink/';
             this.tokenName = 'token';
@@ -481,6 +481,7 @@
             this.SatellizerShared = SatellizerShared;
         }
         Local.prototype.login = function (user, options) {
+//	    alert(3)
             var _this = this;
             if (options === void 0) { options = {}; }
             options.url = options.url ? options.url : joinUrl(this.SatellizerConfig.baseUrl, this.SatellizerConfig.loginUrl);

@@ -4,7 +4,7 @@ app.config(function($interpolateProvider, $stateProvider, $urlRouterProvider, $a
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
     
-    $authProvider.loginUrl = '/api/v1/authenticate';
+//    $authProvider.loginUrl = '/api/v1/authenticate';
  
     $urlRouterProvider.otherwise('/phones');
 
