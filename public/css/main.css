@@ -202,3 +202,8 @@ input.ng-invalid-required{
     border-color: lightblue;
     border-radius: 10px;
 }
+
+.ng-show {
+    width: 120px;
+    
+}

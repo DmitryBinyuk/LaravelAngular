@@ -57,6 +57,7 @@
 	    <div class="container">
 		<div class="feedback">
 		    aaaaaaa
+		    <a href="" ng-click="showme=true">Show</a>
 		</div>
 		<div ui-view></div>
 	    </div>
