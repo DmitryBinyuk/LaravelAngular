@@ -188,3 +188,17 @@ input.ng-invalid-required{
     text-align: center;
     background-color: #E2A9A4;
 }
+
+.feedback {
+    right: 0px;
+    position: fixed;
+    top: 50%;
+    /*left: 98%;*/
+    margin-top: -50px;
+    /*margin-left: -50px;*/
+    width: 60px;
+    height: 150px;
+    border-style: solid;
+    border-color: lightblue;
+    border-radius: 10px;
+}

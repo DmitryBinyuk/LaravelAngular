@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="js/angular/app/lib/angular.js"></script>
 	<script type="text/javascript" src="js/angular/app/lib/angular-route.js"></script>
 	<script type="text/javascript" src="js/angular/app/lib/dirPagination.js"></script>
+	<script type="text/javascript" src="js/angular/app/lib/angular-animate.js"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
@@ -54,6 +55,9 @@
 	    </div>
     <!--[[phone_search]]-->
 	    <div class="container">
+		<div class="feedback">
+		    aaaaaaa
+		</div>
 		<div ui-view></div>
 	    </div>
 		@yield('page_content')
