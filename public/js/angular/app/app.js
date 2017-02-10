@@ -65,6 +65,7 @@ app.run([
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.hideFeedbackForm = true;
 
     $rootScope.user = null;
 

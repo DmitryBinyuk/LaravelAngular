@@ -6,47 +6,43 @@ app.controller('AuthController',  function($auth, $state,$http,$rootScope, $scop
     $scope.loginError=false;
     $scope.loginErrorText='';
 
-        $scope.login = function() {
+    $scope.login = function() {
 
-            var credentials = {
-                email: $scope.email,
-                password: $scope.password
-            }
+	var credentials = {
+	    email: $scope.email,
+	    password: $scope.password
+	}
 
-            $auth.login(credentials).then(function() {
-//alert(1);
-                return $http.get('/api/v1/authenticate/user');
+	$auth.login(credentials).then(function() {
 
-            }, function(error) {
-                $scope.loginError = true;
+	return $http.get('/api/v1/authenticate/user');
 
-            }).then(function(response) {
-                $rootScope.currentUser = response.data.user;
-                $scope.loginError = false;
-                $scope.loginErrorText = '';
-		
-		//new block
-		var user = JSON.stringify(response.data.user);	
-		localStorage.setItem('user', user);
-		sessionStorage.setItem('user', user);
-		
-		$sessionStorage.user = user;
-		$rootScope.authenticated = true;
+	}, function(error) {
+	    $scope.loginError = true;
 
-                $state.go('phones');
-            });
-        }
+	}).then(function(response) {
+	    $rootScope.currentUser = response.data.user;
+	    $scope.loginError = false;
+	    $scope.loginErrorText = '';
 
-        $scope.register = function () {
+	    //new block
+	    var user = JSON.stringify(response.data.user);	
+	    localStorage.setItem('user', user);
+	    sessionStorage.setItem('user', user);
 
-            $http.post('/api/v1/register',$scope.newUser)
-                .success(function(data){
-                    $scope.email=$scope.newUser.email;
-                    $scope.password=$scope.newUser.password;
-                    $scope.login();
-            })
+	    $sessionStorage.user = user;
+	    $rootScope.authenticated = true;
 
-        };
+	    $state.go('phones');
+	});
+    }
 
+    $scope.register = function () {
+
+	$http.post('/api/v1/register',$scope.newUser)
+	    .success(function(){
+		console.log('succis');
+	})
+    };
 
 });

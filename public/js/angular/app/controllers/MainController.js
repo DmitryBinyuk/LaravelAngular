@@ -2,8 +2,6 @@ app.controller('MainController', function($scope, $location, $http, hexify) {
     $scope.firstName = "Dmitry";
     $scope.lastName = "Finagan";
     
-//    $rootScope.name = "Dmitry";
-    
     $scope.fullName = function(){
 	return $scope.firstName + " " + $scope.lastName;
     }
@@ -54,5 +52,21 @@ app.controller('MainController', function($scope, $location, $http, hexify) {
 	$scope.lheaders = response.headers;
 	$scope.lconfig = response.config;
     });
+    
+    $scope.sendFeedback = function() {
+	console.log($scope.Feedback);
+	
+//	$http.post('/api/v1/feedback/create',$scope.Feedback).success(function(data, status) {
+//            $scope.hello = 'aa';
+//        });
+	
+	
+	$http({
+	    method: 'post',
+	    url: '/api/v1/feedback/create',
+	    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	    data: $scope.Feedback
+	});
+    }
 
 });

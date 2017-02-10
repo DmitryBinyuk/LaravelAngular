@@ -47,17 +47,31 @@
 	    <div class="header">
 		<ul>
 		    <li><a class="main_header_link" href="#phones">All phones</a></li>
-		    <li><a class="main_header_link" href="#news">News</a></li>
-		    <li><a class="main_header_link" href="#news">News</a></li>
+		    <li><a class="main_header_link" href="#profile">Profile</a></li>
 		    <li class="logged_as_block" ng-if="typeof [[currentUserName]] !== undefined">Logged as: <a href="#profile"> [[currentUserName]] </a></li>
 		    <input ng-model="phone_search" class="header_search" name="phone_search" placeholder="Search">
 		</ul>
 	    </div>
-    <!--[[phone_search]]-->
 	    <div class="container">
-		<div class="feedback">
-		    aaaaaaa
-		    <a href="" ng-click="showme=true">Show</a>
+		<a href="" ng-click="hideFeedbackForm = hideFeedbackForm ? false : true">
+		    <div class="feedback"><br><br><br><br><br><br>
+			 <p class="feedback_text">Feedback</p>
+
+		    </div>
+		</a>
+		<div ng-controller="MainController" ng-hide="hideFeedbackForm" class="feedback_fullsize">
+		    <form>
+			<div class="form-group">
+			    <input type="email" class="form-control" placeholder="Email" ng-model="Feedback.email">
+			</div>
+			<div class="form-group">
+			    <input type="text" class="form-control" placeholder="Author" ng-model="Feedback.author">
+			</div>
+			<div class="form-group">
+			    <textarea rows="3" class="form-control" ng-model="Feedback.message">Please enter your message...</textarea>
+			</div>
+			<button class="btn btn-primary" ng-click="sendFeedback()">Submit</button>
+		    </form>
 		</div>
 		<div ui-view></div>
 	    </div>
