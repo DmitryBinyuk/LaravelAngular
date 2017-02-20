@@ -4,7 +4,6 @@ namespace App\Api1\Requests;
 
 use App\Models\Comment;
 use App\Http\Requests\Request;
-//use Auth;
 
 class CommentAddRequest extends Request
 {

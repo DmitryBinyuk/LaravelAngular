@@ -54,12 +54,6 @@ app.controller('MainController', function($scope, $location, $http, hexify) {
     });
     
     $scope.sendFeedback = function() {
-	console.log($scope.Feedback);
-	
-//	$http.post('/api/v1/feedback/create',$scope.Feedback).success(function(data, status) {
-//            $scope.hello = 'aa';
-//        });
-	
 	
 	$http({
 	    method: 'post',

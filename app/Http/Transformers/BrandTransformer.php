@@ -12,11 +12,6 @@ class BrandTransformer extends TransformerAbstract
         'phones'
     ];
 
-//    protected $defaultIncludes = [
-//        'picture',
-//        'meta'
-//    ];
-
     protected $detailed;
 
     public function __construct($detailed = false)
@@ -24,7 +19,7 @@ class BrandTransformer extends TransformerAbstract
         $this->detailed = $detailed;
     }
 
-    public function transform(Brand )
+    public function transform(Brand $brand)
     {
         $data = [
             'id' => (int) $brand->id,

@@ -28,7 +28,7 @@ class FeedbackController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create(FeedbackCreateRequest $request) {
-sdvsdf
+
 	return json_encode(1);
 	$password = $request->request->get('password');
 

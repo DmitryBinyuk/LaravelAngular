@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>@yield('page_title')</title>
 
         <!-- Bootstrap -->
@@ -33,7 +32,6 @@
 
 
 	<script type="text/javascript" src="js/angular/app/controllers/MainController.js"></script>
-	<script type="text/javascript" src="js/angular/app/controllers/TemplateController.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/PhoneListController.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/PhoneDetailController.js"></script>
 	<script type="text/javascript" src="js/angular/app/controllers/ProfileController.js"></script>
@@ -78,7 +76,7 @@
 		@yield('page_content')
 	</div>
 	    <div id="footer">
-	    &copy; CHISW developed by Dmitry
+	    &copy; developed by Dmitry
 	    </div>
 	</div>
     </body>

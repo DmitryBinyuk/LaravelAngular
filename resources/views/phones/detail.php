@@ -8,7 +8,7 @@
 	<img ng-src="[[phoneDetailData.image]]" class="phone_detail_image">
     </div>
 
-	<h3 class="comment_title">Comments:</h3>
+    <h3 class="comment_title">Comments:</h3>
 
     <div class="block">
 	<form ng-submit="submitComment()">
@@ -28,14 +28,14 @@
 
 	    <ul class="comments_list">
 		<li dir-paginate="comment in comments.data | filter:q | itemsPerPage: pageSize" ng-hide="loading" current-page="currentPage">
-		    <h3>Comment #[[comment.id]] <small>by {{ comment.author }}</h3>
-		    <p>{{ comment.text }}</p>
+		    <h3>Comment #[[comment.id]] <small>by {{ comment.author}}</h3>
+		    <p>{{ comment.text}}</p>
 
 		    <p><a href="" ng-click="deleteComment(comment.id)" class="text-muted">Delete</a></p>
 		</li>
 
 	    </ul>
-	<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/js/angular/app/pagination-phones.html"></dir-pagination-controls>
+	    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/js/angular/app/pagination-phones.html"></dir-pagination-controls>
 	</div>
     </div>
 </div>

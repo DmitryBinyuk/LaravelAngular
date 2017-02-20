@@ -4,6 +4,8 @@
 	<form ng-submit="submitComment()" ng-init='profileData.name = profileUserName; profileData.email = profileUserEmail;'>
 	    <p ng-show="profileHasErrors === true;"? ng-show class="profile_error"> [[errorText]] </p>
 
+	    <input type="hidden" name="id" ng-model="profileData.id">
+
 	    <div class="form-group">
 		<label for="name">Name</label>
 		<input type="text" class="form-control input-md profile_name_input" name="name" ng-model="profileData.name" placeholder="Name" required>

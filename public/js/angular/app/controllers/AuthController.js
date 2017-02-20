@@ -25,7 +25,7 @@ app.controller('AuthController',  function($auth, $state,$http,$rootScope, $scop
 	    $scope.loginError = false;
 	    $scope.loginErrorText = '';
 
-	    //new block
+	    //save data to session
 	    var user = JSON.stringify(response.data.user);	
 	    localStorage.setItem('user', user);
 	    sessionStorage.setItem('user', user);

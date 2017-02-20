@@ -17,8 +17,7 @@ class ProfileController extends Controller {
      * @return Response
      */
     public function index() {
-
-	return 1;
+	//
     }
 
     /**
@@ -29,7 +28,6 @@ class ProfileController extends Controller {
      */
     public function update(ProfileUpdateRequest $request) {
 
-//	return response()->json($request);
 	$password = $request->request->get('password');
 
 	$user = User::find($request->request->getInt('id'));
