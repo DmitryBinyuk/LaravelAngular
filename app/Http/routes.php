@@ -11,6 +11,20 @@
 |
 */
 
+/*****************************************************************************/
+/*   Admin routes
+/*****************************************************************************/
+
+Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin'], function () {
+
+    // Dashboard
+    Route::get('dashboard', 'DashboardController@getIndex')->name('dashboard');
+        
+//    Route::get('users', 'UsersController@index');
+
+
+});
+
 Route::get('/', function() {
     return View::make('frontend.store');
 });

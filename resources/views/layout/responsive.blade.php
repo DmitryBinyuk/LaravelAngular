@@ -43,16 +43,6 @@
     <body>
     <div class="wrapper">
     <div class="main">
-        <div class="header">
-            <ul>
-                <li><a href="#phones">All phones</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#news">News</a></li>
-                <li class="logged_as_block" ng-if="[[name]] != undefined"><p>Logged as: [[name]]</p></li>
-                <input ng-model="phone_search" class="header_search" name="phone_search" placeholder="Search">
-            </ul>
-        </div>
-
 	<div class="wrapper">
 	<div class="main">
 	    <div class="header">

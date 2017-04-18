@@ -1,4 +1,4 @@
-app.controller('AuthController',  function($auth, $state,$http,$rootScope, $scope, $injector) {
+app.controller('AuthController',  function($auth, $state, $http, $rootScope, $scope, $injector) {
     $sessionStorage = $injector.get('$sessionStorage');
     $scope.email='';
     $scope.password='';
@@ -14,7 +14,7 @@ app.controller('AuthController',  function($auth, $state,$http,$rootScope, $scop
             }
 
             $auth.login(credentials).then(function() {
-
+//                $http.defaults.headers.common['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL2FuZ3VsYXJvcy5sb2NhbFwvYXBpXC92MVwvYXV0aGVudGljYXRlIiwiaWF0IjoxNDg1NzMwNDMzLCJleHAiOjE0ODU3MzQwMzMsIm5iZiI6MTQ4NTczMDQzMywianRpIjoiZmEzZGI4MTgxZmE1N2RkMjE3ZTYzY2M2NTU3OGFiNWIifQ.m7koUYCUKKsTobMzVlixNkcQLpS4hjgbvk30LNyQpT8';
                 return $http.get('/api/v1/authenticate/user');
 
             }, function(error) {

@@ -13,7 +13,7 @@
     var Config = (function () {
         function Config() {
             this.baseUrl = '/';
-            this.loginUrl = '/auth/login';
+            this.loginUrl = '/api/v1/authenticate';
             this.signupUrl = '/auth/signup';
             this.unlinkUrl = '/auth/unlink/';
             this.tokenName = 'token';
