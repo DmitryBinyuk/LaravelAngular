@@ -6,8 +6,6 @@ app.controller('ProfileController', function($scope, $rootScope, $http, $statePa
 
     $sessionStorage = $injector.get('$sessionStorage');
     
-//    alert($rootScope.currentUserObject.name);
-    
     $scope.profileData = {};
     $scope.updatedUser = {};
     $scope.profileHasErrors = false;
@@ -33,7 +31,6 @@ app.controller('ProfileController', function($scope, $rootScope, $http, $statePa
             .error(function(data) {
 		$scope.profileHasErrors = true;
 		$scope.errorText = data[Object.keys(data)[0]];
-		console.log(data[Object.keys(data)[0][0]]);
             });
     };
 

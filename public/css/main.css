@@ -203,3 +203,50 @@ input.ng-invalid-required{
     text-align: center;
     background-color: #E2A9A4;
 }
+
+.feedback {
+    right: 0px;
+    position: fixed;
+    top: 45%;
+    /*left: 98%;*/
+    margin-top: -50px;
+    /*margin-left: -50px;*/
+    width: 4%;
+    height: 230px;
+    border-style: solid;
+    border-color: lightblue;
+    border-radius: 10px;
+}
+
+.ng-show {
+    width: 120px;
+    
+}
+
+.feedback_fullsize {
+    right: 4%;
+    position: fixed;
+    top: 45%;
+    /*left: 98%;*/
+    margin-top: -50px;
+    /*margin-left: -50px;*/
+    width: 20%;
+    height: 230px;
+    border-style: solid;
+    border-color: lightblue;
+    border-radius: 10px;
+    
+    transition: all linear 1s;
+    background-color: lightblue;
+}
+
+.feedback_fullsize.ng-hide {
+    width: 0%;
+}
+
+.feedback_text {
+    -ms-transform:rotate(270deg); /* IE 9 */
+    -moz-transform:rotate(270deg); /* Firefox */
+    -webkit-transform:rotate(270deg); /* Safari and Chrome */
+    -o-transform:rotate(270deg);
+}

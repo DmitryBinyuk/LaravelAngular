@@ -15,7 +15,6 @@
     <div class="filtering_phones">
 	<span class="block">Filtering:</span>
 	<input ng-model="phone_search" class="block" name="phone_search">
-	<!--<span class="block">Filtering by brand:</span>-->
 	<select ng-model="brandFilter">
 	    <option ng-repeat="(key, value) in brands" value="{{key}}">{{value.name}}</option>
 	</select>

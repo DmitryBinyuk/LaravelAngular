@@ -107,10 +107,11 @@ app.run([
 
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.hideFeedbackForm = true;
 
     $rootScope.user = null;
 
-    // Здесь мы будем проверять авторизацию
+    // Authorization check
     $rootScope.$on('$stateChangeStart',
       function (event, toState, toParams, fromState, fromParams) {
         SessionService.checkAccess(event, toState, toParams, fromState, fromParams);
@@ -118,8 +119,7 @@ app.run([
 	 $rootScope.currentUserName = $rootScope.currentUserObject.name;
 	 $rootScope.currentUserEmail = $rootScope.currentUserObject.email;
 	 $rootScope.currentUserId = $rootScope.currentUserObject.id;
-	 
-//	console.log('roo_ ', $rootScope.currentUserObject.name);
+
       }
     );
   }
@@ -158,18 +158,6 @@ app.service('hexify', function(){
     };
 });
 
-app.component('phonel', {
-  template: '<h1>!!!!!From component with love from [[$ctrl.from.name]]!</h1>',
-  controller: function() {
-    this.from = {name: 'Vasya'};
-  }
-});
-
-app.component('phopro', {
-  template: '<h1>From component with love from [[$ctrl.names]]!</h1>',
-  controller: 'TemplateController'
-});
-
 app.component('phones', {
   templateUrl: 'phones',
   controller: 'PhoneListController'
@@ -183,15 +171,4 @@ app.component('phonedetail', {
 app.component('profile', {
   templateUrl: 'profile',
   controller: 'ProfileController'
-});
-
-app.config(function($routeProvider){
-//    $routeProvider
-//    .when('/phones', {
-//	template: '<phones></phones>'
-//    })
-//    .when('/phono/:phoneId', {
-//	template: '<phonedetail></phonedetail>'
-//    })
-//    .otherwise('/phones');
 });

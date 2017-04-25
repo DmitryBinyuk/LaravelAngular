@@ -57,6 +57,8 @@ Route::group(['prefix' => 'api/v1', 'namespace' => 'API1\Controllers'], function
 
     Route::post('profile', 'ProfileController@update');
 
+    Route::post('feebback/createq', 'FeedbackController@create');
+
     //Authentfication routes
     Route::post('register', 'TokenAuthController@register');
     Route::post('authenticate', 'TokenAuthController@authenticate');

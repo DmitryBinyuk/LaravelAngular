@@ -4,7 +4,6 @@ namespace App\Api1\Requests;
 
 use App\Models\Comment;
 use App\Http\Requests\Request;
-//use Auth;
 
 class ProfileUpdateRequest extends Request
 {
@@ -28,7 +27,6 @@ class ProfileUpdateRequest extends Request
         return [
             'name' => 'required|string',
             'email' => 'required|email',
-            'id' => 'required|integer|exists:users,id',
 	    'password' => 'sometimes|required|confirmed',
         ];
     }

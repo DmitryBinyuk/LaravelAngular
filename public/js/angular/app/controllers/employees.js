@@ -25,7 +25,7 @@ app.controller('employeesController', function($scope, $http, API_URL) {
             default:
                 break;
         }
-        console.log(id);
+	
         $('#myModal').modal('show');
     }
 

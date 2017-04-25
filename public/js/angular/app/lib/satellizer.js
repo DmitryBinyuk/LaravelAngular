@@ -481,6 +481,7 @@
             this.SatellizerShared = SatellizerShared;
         }
         Local.prototype.login = function (user, options) {
+//	    alert(3)
             var _this = this;
             if (options === void 0) { options = {}; }
             options.url = options.url ? options.url : joinUrl(this.SatellizerConfig.baseUrl, this.SatellizerConfig.loginUrl);

@@ -5,11 +5,11 @@ namespace App\API1\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\API1\Requests\ProfileUpdateRequest;
+use App\API1\Requests\FeedbackCreateRequest;
 use App\User;
 use Response;
 
-class ProfileController extends Controller {
+class FeedbackController extends Controller {
 
     /**
      * Display a listing of the resource.
@@ -17,7 +17,8 @@ class ProfileController extends Controller {
      * @return Response
      */
     public function index() {
-	//
+
+	return 1;
     }
 
     /**
@@ -26,8 +27,9 @@ class ProfileController extends Controller {
      * @param  App\API1\Requests\ProfileUpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(ProfileUpdateRequest $request) {
+    public function create(FeedbackCreateRequest $request) {
 
+	return json_encode(1);
 	$password = $request->request->get('password');
 
 	$user = User::find($request->request->getInt('id'));

@@ -5,7 +5,7 @@ namespace App\Api1\Requests;
 use App\Models\Comment;
 use App\Http\Requests\Request;
 
-class CommentAddRequest extends Request
+class FeedbackCreateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +26,17 @@ class CommentAddRequest extends Request
     {
         return [
 //            'author' => 'required|string',
-//            'text' => 'required|string',
-//            'phone_id' => 'required|integer|exists:phones,id',
+//            'email' => 'required|email',
+//            'message' => 'required|string',
         ];
     }
 
     public function messages()
     {
         return [
-            'author.required' => 'Field is required',
-            'text.required' => 'Field is required',
+            'author.required' => 'Author is required',
+            'email.required' => 'Email is required',
+	    'message.required' => 'Feedback message is required',
         ];
     }
 }

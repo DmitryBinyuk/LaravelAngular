@@ -110,20 +110,10 @@ class PhonesController extends Controller
      */
     public function brands() {
 
-//	$brands = Brand::select('name')
-//		    ->get();
-
 	$brands = Brand::all();
-
-//	$data = fractal()
-//	    ->collection($brands)
-//	    ->transformWith(new BrandTransformer())
-//	    ->toArray();
 
 	$namesArray = [];
 
         return $brands;
-
-//	return Response::json($brands);
     }
 }
