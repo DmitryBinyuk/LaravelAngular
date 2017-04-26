@@ -24,8 +24,7 @@ Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin'], function
     Route::get('users', 'UsersController@getIndex')->name('users');
     Route::get('users/{userId}', 'UsersController@getEdit')->name('users.edit');
     Route::post('users/{userId}', 'UsersController@postUpdate')->name('users.update');
-
-
+    Route::delete('users/{userId}/de', 'UsersController@postUpdate')->name('users.delete');
 });
 
 Route::get('/', function() {

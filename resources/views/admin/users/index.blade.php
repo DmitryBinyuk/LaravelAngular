@@ -64,6 +64,9 @@
                                                 <td class="mailbox-subject"><b>{{$user->email}}</b></td>
                                                 <td class="mailbox-subject">{{$user->created_at}}</td>
                                                 <td class="mailbox-date">{{$user->updated_at}}</td>
+                                                <td class="mailbox-date">
+                                                    <a data-id="{{ $user->id }}" class='btn btn-danger deleteUser' data-toggle="modal" data-target="#userDeleteModal">Delete</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -103,48 +106,19 @@
         </div>
     </section>
 @endsection
-<script>
-    $(function () {
-        //Enable iCheck plugin for checkboxes
-        //iCheck for checkbox and radio inputs
-        $('.mailbox-messages input[type="checkbox"]').iCheck({
-            checkboxClass: 'icheckbox_flat-blue',
-            radioClass: 'iradio_flat-blue'
-        });
+<div class="modal fade" id="userDeleteModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">User delete</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you realy want to delete user?</p>
+                <button type="button" class="btn btn-danger userDeleteConfirm" onclick="deleteUser(" + userIdForDelete + ")">Yes</button>
+                <button type="button" class="btn btn-success clearUserForDelete" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
 
-        //Enable check and uncheck all functionality
-        $(".checkbox-toggle").click(function () {
-            var clicks = $(this).data('clicks');
-            if (clicks) {
-                //Uncheck all checkboxes
-                $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-                $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
-            } else {
-                //Check all checkboxes
-                $(".mailbox-messages input[type='checkbox']").iCheck("check");
-                $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
-            }
-            $(this).data("clicks", !clicks);
-        });
-
-        //Handle starring for glyphicon and font awesome
-        $(".mailbox-star").click(function (e) {
-            e.preventDefault();
-            //detect type
-            var $this = $(this).find("a > i");
-            var glyph = $this.hasClass("glyphicon");
-            var fa = $this.hasClass("fa");
-
-            //Switch states
-            if (glyph) {
-                $this.toggleClass("glyphicon-star");
-                $this.toggleClass("glyphicon-star-empty");
-            }
-
-            if (fa) {
-                $this.toggleClass("fa-star");
-                $this.toggleClass("fa-star-o");
-            }
-        });
-    });
-</script>
+    </div>
+</div>

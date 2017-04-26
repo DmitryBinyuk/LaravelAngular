@@ -55,4 +55,12 @@ class UsersController extends Controller
             return \Redirect::route('users.edit', [$userId]);
         }
     }
+
+    public function postDelete($userId)
+    {
+        return 1;
+        $user = User::find($userId);
+
+        $user->delete();
+    }
 }

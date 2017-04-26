@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/admin/AdminLTE.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/admin/ICheck/flat/blue.css')}}">
@@ -547,6 +549,8 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script src="{{asset('admin/js/admin.js')}}"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="plugins/morris/morris.min.js"></script>
