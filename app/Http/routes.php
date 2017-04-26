@@ -19,8 +19,11 @@ Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin'], function
 
     // Dashboard
     Route::get('dashboard', 'DashboardController@getIndex')->name('dashboard');
-        
-//    Route::get('users', 'UsersController@index');
+
+    // Users
+    Route::get('users', 'UsersController@getIndex')->name('users');
+    Route::get('users/{userId}', 'UsersController@getEdit')->name('users.edit');
+    Route::post('users/{userId}', 'UsersController@postUpdate')->name('users.update');
 
 
 });
