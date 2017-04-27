@@ -12,8 +12,14 @@
         $.ajax({
             url: '/admin/users/' + window.userIdForDelete,
             type: 'DELETE',
-            success: callback || $.noop,
-            error: errorCallback || $.noop
+            success: function(result){
+                setInterval(function() {
+                    window.location.reload();
+                }, 700);
+            },
+            error: function(result){
+                alert('Delete is crashed');
+            }
         });
     });
 })();

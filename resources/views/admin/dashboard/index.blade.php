@@ -1,9 +1,7 @@
 @extends('admin.layout.base')
 
-@section('page-content')
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Übersicht</h1>
-        </div>
-    </div>
+@section('admin_content')
+    <h1>
+        <p class="dashboard_header">Admin Dashboard</p>
+    </h1>
 @endsection

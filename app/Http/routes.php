@@ -15,16 +15,27 @@
 /*   Admin routes
 /*****************************************************************************/
 
-Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin', function () {
 
-    // Dashboard
-    Route::get('dashboard', 'DashboardController@getIndex')->name('dashboard');
+    //Admin login
+    Route::get('login', 'AuthController@getLogin')->name('login.get')->middleware(null);
+    Route::post('login', 'AuthController@postLogin')->name('login.post')->middleware(null);
 
-    // Users
-    Route::get('users', 'UsersController@getIndex')->name('users');
-    Route::get('users/{userId}', 'UsersController@getEdit')->name('users.edit');
-    Route::post('users/{userId}', 'UsersController@postUpdate')->name('users.update');
-    Route::delete('users/{userId}/de', 'UsersController@postUpdate')->name('users.delete');
+
+    Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin', 'middleware' => ['auth', 'admin'], function () {
+
+        // Dashboard
+        Route::get('dashboard', 'DashboardController@getIndex')->name('dashboard');
+
+        // Users
+        Route::get('users', 'UsersController@getIndex')->name('users');
+        Route::delete('users/{userId}', 'UsersController@destroy')->name('users.delete');
+        Route::get('users/create', 'UsersController@getCreate')->name('users.create');
+        Route::post('users', 'UsersController@postCreate')->name('users.store');
+        Route::get('users/{userId}', 'UsersController@getEdit')->name('users.edit');
+        Route::post('users/{userId}', 'UsersController@postUpdate')->name('users.update');
+
+    });
 });
 
 Route::get('/', function() {
