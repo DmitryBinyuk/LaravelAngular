@@ -15,14 +15,14 @@
 /*   Admin routes
 /*****************************************************************************/
 
-Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin', function () {
+Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin'], function () {
 
     //Admin login
     Route::get('login', 'AuthController@getLogin')->name('login.get')->middleware(null);
     Route::post('login', 'AuthController@postLogin')->name('login.post')->middleware(null);
 
 
-    Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin', 'middleware' => ['auth', 'admin'], function () {
+    Route::group([], function () {
 
         // Dashboard
         Route::get('dashboard', 'DashboardController@getIndex')->name('dashboard');

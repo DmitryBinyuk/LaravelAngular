@@ -526,7 +526,7 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
 <script src="{{asset('admin/js/admin.js')}}"></script>
-<script src="{{asset('admin/js/app.min.js')}}"></script>
+<script src="{{asset('admin/js/admin.js')}}"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="plugins/morris/morris.min.js"></script>
