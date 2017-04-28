@@ -56,7 +56,7 @@ class AuthController extends Controller
             $user->name = $request->input('name');
             $user->email = $request->input('email');
 
-            $password=Hash::make($request->input('password'));
+            $password=\Hash::make($request->input('password'));
             $user->password = $password;
 
             $user->save();

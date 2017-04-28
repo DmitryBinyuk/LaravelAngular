@@ -5,7 +5,7 @@
     <div class="login_form">
 
         {{--Registration form--}}
-        {{ Form::open(array('action' => ['Admin\Controllers\UsersController@postRegistration'], 'class' => 'register-form')) }}
+        {{ Form::open(array('action' => ['Admin\Controllers\AuthController@postRegistration'], 'class' => 'register-form')) }}
             {{ Form::text('name', null, ['placeholder' => 'Name']) }}
             {{ Form::email('email', null, ['placeholder' => 'Email']) }}
             {{ Form::password('password', ['placeholder' => 'Password']) }}
