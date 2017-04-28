@@ -3,6 +3,8 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use \Validator;
 use Auth;
@@ -16,11 +18,50 @@ class AuthController extends Controller
 
     public function postLogin(Request $request)
     {
-        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')], $request->input('remember_me')))
+        $rememberMe = (Input::has('remember_me')) ? true : false;
+
+        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')], $rememberMe))
         {
-            return \Redirect::route('admin/dashboard');
+            $u = Auth::user();
+            return \Redirect::route('admin.dashboard');
         }
 
         return view('admin.login');
+    }
+
+    public function postRegistration(Request $request)
+    {
+        $rules = array(
+            'name' => 'required|min:1|max:50',
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        );
+
+        $rules_messages = array(
+            "name.required" => 'Name field is required.',
+            "email" => 'Email field is required.',
+            "password" => 'Password field is required.',
+        );
+
+        $validator = Validator::make($request->all(), $rules, $rules_messages);
+
+        if ($validator->fails()) {
+
+            $errors = $validator->getMessageBag();
+
+            return \Redirect::back()->withInput()->withErrors($errors);
+        } else {
+
+            $user = new User;
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+
+            $password=Hash::make($request->input('password'));
+            $user->password = $password;
+
+            $user->save();
+
+            return \Redirect::route('phones.list');
+        }
     }
 }

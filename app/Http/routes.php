@@ -18,14 +18,16 @@
 Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin'], function () {
 
     //Admin login
-    Route::get('login', 'AuthController@getLogin')->name('login.get')->middleware(null);
+    Route::get('login', 'AuthController@getLogin')->name('admin.login.get')->middleware(null);
     Route::post('login', 'AuthController@postLogin')->name('login.post')->middleware(null);
 
+    //Admin registration
+    Route::post('registration', 'AuthController@postRegistration')->name('registration.post')->middleware(null);
 
-    Route::group([], function () {
+    Route::group(['middleware' => ['auth']], function () {
 
         // Dashboard
-        Route::get('dashboard', 'DashboardController@getIndex')->name('dashboard');
+        Route::get('dashboard', 'DashboardController@getIndex')->name('admin.dashboard');
 
         // Users
         Route::get('users', 'UsersController@getIndex')->name('users');

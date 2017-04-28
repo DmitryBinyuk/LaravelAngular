@@ -79,11 +79,13 @@ class UsersController extends Controller
         $rules = array(
             'name' => 'required|min:1|max:50',
             'email' => 'required|email',
+            'password' => 'required|min:6',
         );
 
         $rules_messages = array(
             "name.required" => 'Name field is required.',
             "email" => 'Email field is required.',
+            "password" => 'Password field is required.',
         );
 
         $validator = Validator::make($request->all(), $rules, $rules_messages);
