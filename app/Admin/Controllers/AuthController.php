@@ -61,7 +61,7 @@ class AuthController extends Controller
 
             $user->save();
 
-            return \Redirect::route('phones.list');
+            return \Redirect::route('admin.login.get');
         }
     }
 }

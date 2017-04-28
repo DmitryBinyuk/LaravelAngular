@@ -24,7 +24,7 @@ Route::group(['namespace' => 'Admin\Controllers', 'prefix' => 'admin'], function
     //Admin registration
     Route::post('registration', 'AuthController@postRegistration')->name('registration.post')->middleware(null);
 
-    Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['admin']], function () {
 
         // Dashboard
         Route::get('dashboard', 'DashboardController@getIndex')->name('admin.dashboard');
